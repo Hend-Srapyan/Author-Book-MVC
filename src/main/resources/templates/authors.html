@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Authors</title>
+</head>
+<body>
+<h1 style="color: black">AUTHORS PAGE</h1><br>
+<table border="2">
+  <tr>
+    <tr><h4><a href="/authors/add" style="color: black">ADD</a></h4></tr>
+  </tr>
+
+</table>
+
+
+<table border="2">
+  <tr>
+    <th>ID</th>
+    <th>NAME</th>
+    <th>SURNAME</th>
+    <th>PHONE</th>
+    <th>DATE OF BIRTHDAY</th>
+    <th>GENDER</th>
+  </tr>
+
+  <tr th:each="author : ${authors}">
+    <td th:text="${author.id}"></td>
+    <td th:text="${author.name}"></td>
+    <td th:text="${author.surname}"></td>
+    <td th:text="${author.phone}"></td>
+    <td th:text="${author.dateOfBirthday}"></td>
+    <td th:text="${author.gender.name()}"></td>
+  </tr>
+</table>
+</body>
+</html>
