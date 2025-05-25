@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<h1 style="color: red">EDIT AUTHOR</h1>
+
+<table border="2">
+    <tr>
+        <th><h4><a href="/authors" style="color: black">Authors</a></h4></th>
+        <th><h4><a href="/" style="color: black">Main</a></h4></th>
+    </tr>
+</table>
+
+<form action="/authors/edit" method="post">
+    <input type="hidden" name="id" th:value="${author.id}">
+    Name: <input type="text" name="name" th:value="${author.name}"/><br>
+    Surname: <input type="text" name="surname" th:value="${author.surname}"/><br>
+    Phone: <input type="text" name="phone" th:value="${author.phone}"/><br>
+    DateOfBirthday: <input type="date" name="dateOfBirthday" th:value="${#dates.format(author.dateOfBirthday, 'yyyy-MM-dd')}"/><br>
+    Gender: <select name="gender">
+    <option value="MALE" th:selected="${author.gender.name() == 'MALE'}">MALE</option>
+    <option value="FEMALE"  th:selected="${author.gender.name() == 'FEMALE'}">FEMALE</option>
+</select><br>
+    <input type="submit" value="EDIT">
+</form>
+</body>
+</html>

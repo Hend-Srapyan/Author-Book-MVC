@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+  <meta charset="UTF-8">
+  <title>Books</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<h1 style="color: red">BOOKS PAGE</h1>
+
+<table border="2">
+  <tr>
+    <th><h4><a href="/books/add" style="color: black">ADD</a></h4></th>
+    <th><h4><a href="/" style="color: black">Main</a></h4></th>
+  </tr>
+</table>
+
+<table border="2">
+  <tr>
+    <th>ID</th>
+    <th>TITLE</th>
+    <th>PRICE</th>
+    <th>QTY</th>
+    <th>AUTHOR NAME</th>
+    <th>AUTHOR SURNAME</th>
+    <th>CREATED AT</th>
+    <th>EDIT</th>
+    <th>DELETE</th>
+
+  </tr>
+
+  <tr th:each="book : ${books}">
+    <td th:text="${book.getId()}"></td>
+    <td th:text="${book.getTitle()}"></td>
+    <td th:text="${book.getPrice()}"></td>
+    <td th:text="${book.getQty()}"></td>
+    <td th:text="${book.getAuthor().getName()}"></td>
+    <td th:text="${book.getAuthor().getSurname()}"></td>
+    <td th:text="${book.getCreatedAt()}"></td>
+    <td> <a th:href="@{/books/edit(id = ${book.id})}">Edit</a></td>
+    <td> <a th:href="@{/books/delete(id = ${book.id})}">Delete</a></td>
+  </tr>
+</table>
+</body>
+</html>

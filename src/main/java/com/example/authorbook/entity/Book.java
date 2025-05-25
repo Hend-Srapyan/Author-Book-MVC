@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -22,8 +23,9 @@ public class Book {
     private String title;
     private double price;
     private int qty;
-    @ManyToOne
-    private Author authorId;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createdAt;
+    @ManyToOne
+    private Author author;
 
 }

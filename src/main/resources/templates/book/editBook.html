@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<h1 style="color: red">EDIT BOOK</h1>
+
+<table border="2">
+    <tr>
+        <th><h4><a href="/books" style="color: black">Books</a></h4></th>
+        <th><h4><a href="/" style="color: black">Main</a></h4></th>
+    </tr>
+</table>
+
+<form action="/books/edit" method="post">
+    <input type="hidden" name="id" th:value="${book.id}">
+    Title: <input type="text" name="title" th:value="${book.title}"/><br>
+    Price: <input type="number" name="price" th:value="${book.price}"/><br>
+    Qty: <input type="number" name="qty" th:value="${book.qty}"/><br>
+    Author: <select name="author">
+    <option th:selected="${author.name + ' ' + author.surname}" th:each="author : ${authors}"
+            th:value="${author.id}"
+            th:text="${author.name + ' ' + author.surname}"></option>
+</select><br>
+    Created At:<input type="date" name="created_at" th:value="${#dates.format(book.createdAt, 'yyyy-MM-dd')}"><br>
+    <input type="submit" value="EDIT">
+</form>
+</body>
+</html>

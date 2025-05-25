@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<h1 style="color: red">ADD AUTHOR</h1><br>
+
+<table border="2">
+    <tr>
+        <th><h4><a href="/authors" style="color: black">Authors</a></h4></th>
+        <th><h4><a href="/" style="color: black">Main</a></h4></th>
+    </tr>
+</table>
+
+<form action="/authors/add" method="post">
+    Name: <input type="text" name="name"/><br>
+    Surname: <input type="text" name="surname"/><br>
+    Phone: <input type="text" name="phone"/><br>
+    DateOfBirthday: <input type="date" name="dateOfBirthday"/><br>
+    Gender: <select name="gender">
+    <option value="MALE">MALE</option>
+    <option value="FEMALE">FEMALE</option>
+</select><br>
+    <input type="submit" value="ADD">
+</form>
+</body>
+</html>
