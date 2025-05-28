@@ -6,15 +6,17 @@
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<h1 style="color: red">AUTHORS PAGE</h1><br>
-<table border="2">
+<h1 style="color: red" ce>AUTHORS PAGE</h1><br>
+
+
+<table th:border="4" th:width="1500" bgcolor="white">
   <tr>
-    <th><h4><a href="/authors/add" style="color: black">ADD</a></h4></th>
-    <th><h4><a href="/" style="color: black">Main</a></h4></th>
+    <th onclick="this.querySelector('a').style.color = 'red'"><h1><a href="/authors/add" style="color: black">ADD</a></h1></th>
+    <th onclick="this.querySelector('a').style.color = 'red'"><h1><a href="/" style="color: black">Main</a></h1></th>
   </tr>
 </table>
 
-<table border="2">
+<table th:border="4" th:width="1500" bgcolor="white">
   <tr>
     <th>ID</th>
     <th>NAME</th>
@@ -22,6 +24,7 @@
     <th>PHONE</th>
     <th>DATE OF BIRTHDAY</th>
     <th>GENDER</th>
+    <th>IMAGE</th>
     <th>EDIT</th>
     <th>DELETE</th>
 
@@ -34,8 +37,9 @@
     <td th:text="${author.phone}"></td>
     <td th:text="${author.dateOfBirthday}"></td>
     <td th:text="${author.gender.name()}"></td>
-    <td> <a th:href="@{/authors/edit(id = ${author.id})}">Edit</a></td>
-    <td> <a th:href="@{/authors/delete(id = ${author.id})}">Delete</a></td>
+    <td><img th:src="@{/getImage(imageName=${author.imageName})}" width="100"></td>
+    <td><a th:href="@{/authors/edit(id = ${author.id})}">Edit</a></td>
+    <td><a th:href="@{/authors/delete(id = ${author.id})}">Delete</a></td>
   </tr>
 </table>
 </body>

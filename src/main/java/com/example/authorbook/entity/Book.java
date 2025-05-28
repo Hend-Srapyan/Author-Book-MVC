@@ -27,5 +27,6 @@ public class Book {
     private Date createdAt;
     @ManyToOne
     private Author author;
+    private String imageName;
 
 }

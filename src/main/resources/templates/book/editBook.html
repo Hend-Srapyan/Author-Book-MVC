@@ -8,14 +8,14 @@
 <body>
 <h1 style="color: red">EDIT BOOK</h1>
 
-<table border="2">
+<table th:border="2" th:width="209" bgcolor="white">
     <tr>
-        <th><h4><a href="/books" style="color: black">Books</a></h4></th>
-        <th><h4><a href="/" style="color: black">Main</a></h4></th>
+        <th onclick="this.querySelector('a').style.color = 'red'"><h4><a href="/books" style="color: black">Books</a></h4></th>
+        <th onclick="this.querySelector('a').style.color = 'red'"><h4><a href="/" style="color: black">Main</a></h4></th>
     </tr>
 </table>
 
-<form action="/books/edit" method="post">
+<form action="/books/edit"  method="post" enctype="multipart/form-data">
     <input type="hidden" name="id" th:value="${book.id}">
     Title: <input type="text" name="title" th:value="${book.title}"/><br>
     Price: <input type="number" name="price" th:value="${book.price}"/><br>
@@ -26,6 +26,7 @@
             th:text="${author.name + ' ' + author.surname}"></option>
 </select><br>
     Created At:<input type="date" name="created_at" th:value="${#dates.format(book.createdAt, 'yyyy-MM-dd')}"><br>
+    Image:<input type="file" name="image"><br>
     <input type="submit" value="EDIT">
 </form>
 </body>

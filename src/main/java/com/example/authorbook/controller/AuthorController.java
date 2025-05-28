@@ -1,25 +1,26 @@
 package com.example.authorbook.controller;
 
 import com.example.authorbook.entity.Author;
-import com.example.authorbook.repository.AuthorRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.authorbook.service.AuthorService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/authors")
+@RequiredArgsConstructor
 public class AuthorController {
 
-    @Autowired
-    private AuthorRepository authorRepository;
+    private final AuthorService authorService;
+
 
     @GetMapping
     public String authors(ModelMap modelMap) {
-        List<Author> all = authorRepository.findAll();
+        List<Author> all = authorService.findAll();
         modelMap.addAttribute("authors", all);
         return "author/authors";
     }
@@ -30,22 +31,22 @@ public class AuthorController {
     }
 
     @PostMapping("/add")
-    public String addAuthor(@ModelAttribute Author author){
-        authorRepository.save(author);
+    public String addAuthor(@ModelAttribute Author author,
+                            @RequestParam("image")MultipartFile multipartFile){
+        authorService.save(author, multipartFile);
         return "redirect:/authors";
     }
 
     @GetMapping("/delete")
     public String deleteAuthor(@RequestParam("id") int id){
-        authorRepository.deleteById(id);
+        authorService.deleteById(id);
         return "redirect:/authors";
     }
 
     @GetMapping("/edit")
     public String editAuthorPage(@RequestParam("id") int id, ModelMap modelMap) {
-        Optional<Author> byId = authorRepository.findById(id);
-        if (byId.isPresent()) {
-            Author author = byId.get();
+        Author author = authorService.findById(id);
+        if (author != null) {
             modelMap.put("author", author);
             return "author/editAuthor";
         }
@@ -53,8 +54,9 @@ public class AuthorController {
     }
 
     @PostMapping("/edit")
-    public String editAuthor(@ModelAttribute Author author){
-        authorRepository.save(author);
+    public String editAuthor(@ModelAttribute Author author,
+                             @RequestParam("image")MultipartFile multipartFile){
+        authorService.update(author, multipartFile);
         return "redirect:/authors";
     }
 }

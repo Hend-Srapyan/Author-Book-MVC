@@ -26,5 +26,6 @@ public class Author {
     private Date dateOfBirthday;
     @Enumerated(EnumType.STRING)
     private Gender gender;
+    private String imageName;
 
 }

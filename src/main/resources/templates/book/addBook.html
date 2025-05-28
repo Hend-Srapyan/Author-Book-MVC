@@ -8,14 +8,14 @@
 <body>
 <h1 style="color: red">ADD BOOK</h1><br>
 
-<table border="2">
+<table th:border="2" th:width="209" bgcolor="white" >
     <tr>
-        <th><h4><a href="/books" style="color: black">Books</a></h4></th>
-        <th><h4><a href="/" style="color: black">Main</a></h4></th>
+        <th onclick="this.querySelector('a').style.color = 'red'"><h4><a href="/books" style="color: black">Books</a></h4></th>
+        <th onclick="this.querySelector('a').style.color = 'red'"><h4><a href="/" style="color: black">Main</a></h4></th>
     </tr>
 </table>
 
-<form action="/books/add" method="post">
+<form action="/books/add" method="post" enctype="multipart/form-data">
     Title: <input type="text" name="title"/><br>
     Price: <input type="number" name="price"/><br>
     Qty: <input type="number" name="qty"/><br>
@@ -25,6 +25,7 @@
             th:text="${author.name + ' ' + author.surname}"></option>
 </select><br>
     Created At:<input type="date" name="created_at"><br>
+    Image:<input type="file" name="image"><br>
     <input type="submit" value="ADD">
 </form>
 </body>
