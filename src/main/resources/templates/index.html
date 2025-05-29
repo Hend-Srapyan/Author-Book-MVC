@@ -6,11 +6,14 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body style="text-align: center">
-<h1 style="color: red">AUTHOR BOOK APPLICATION</h1><br>
+<div th:if="${user != null}"><h1 style="color: red">AUTHOR BOOK APPLICATION</h1><th onclick="this.querySelector('a').style.color = 'red'"><span> <h2 style="color: red" th:text="${user.name}"></h2></span> <a href="/logout" style="color: black">Logout</a></th></div><br>
+<div th:if="${user == null}"><h1 style="color: red">WELCOME GUEST</h1></div>
 <table border="2" th:width="1500" bgcolor="white">
     <tr>
         <th onclick="this.querySelector('a').style.color = 'red'"><h1><a href="/authors" style="color: black">Authors</a></h1></th>
         <th onclick="this.querySelector('a').style.color = 'red'"><h1><a href="/books" style="color: black">Books</a></h1></th>
+        <th onclick="this.querySelector('a').style.color = 'red'"><h1><a href="/users/register" style="color: black">Register</a></h1></th>
+
     </tr>
 </table>
 
