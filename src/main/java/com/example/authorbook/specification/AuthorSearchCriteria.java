@@ -15,5 +15,5 @@ public class AuthorSearchCriteria {
     private String surname;
     private String phone;
     private Gender gender;
-    private String email;
+
 }
