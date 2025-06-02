@@ -2,6 +2,7 @@ package com.example.authorbook.controller;
 
 import com.example.authorbook.entity.Author;
 import com.example.authorbook.service.AuthorService;
+import com.example.authorbook.specification.AuthorSearchCriteria;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -23,6 +24,23 @@ public class AuthorController {
         List<Author> all = authorService.findAll();
         modelMap.addAttribute("authors", all);
         return "author/authors";
+    }
+
+    @GetMapping("/search")
+    public String searchAuthor(@RequestParam("keyword") String keyword, ModelMap modelMap) {
+        List<Author> searchResult = authorService.search(keyword);
+        modelMap.addAttribute("authors", searchResult);
+        return "author/authorsSearch";
+    }
+    @GetMapping("/filter")
+    public String filterAuthor(@ModelAttribute AuthorSearchCriteria searchCriteria, ModelMap modelMap) {
+        List<Author> searchResult = authorService.filter(searchCriteria);
+        modelMap.addAttribute("authors", searchResult);
+        modelMap.addAttribute("name", searchCriteria.getName());
+        modelMap.addAttribute("surname", searchCriteria.getSurname());
+        modelMap.addAttribute("phone", searchCriteria.getPhone());
+
+        return "author/authorsSearch";
     }
 
     @GetMapping("/add")

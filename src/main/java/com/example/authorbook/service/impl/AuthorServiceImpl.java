@@ -3,11 +3,12 @@ package com.example.authorbook.service.impl;
 import com.example.authorbook.entity.Author;
 import com.example.authorbook.repository.AuthorRepository;
 import com.example.authorbook.service.AuthorService;
+import com.example.authorbook.specification.AuthorSpecification;
+import com.example.authorbook.specification.AuthorSearchCriteria;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -62,5 +63,17 @@ public class AuthorServiceImpl implements AuthorService {
             author.setImageName(fileName);
         }
         authorRepository.save(author);
+    }
+
+    @Override
+    public List<Author> search(String keyword) {
+        return authorRepository.findAllByNameContainingOrSurnameContaining(keyword, keyword);
+    }
+
+    @Override
+    public List<Author> filter(AuthorSearchCriteria searchCriteria) {
+        AuthorSpecification authorSpecification = new AuthorSpecification(searchCriteria);
+        List<Author> all = authorRepository.findAll(authorSpecification);
+        return all;
     }
 }

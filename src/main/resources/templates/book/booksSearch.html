@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Books</title>
+  <title>Authors</title>
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body style="text-align: center">
-<h1 style="color: red">BOOKS PAGE</h1>
+<h1 style="color: red">SEARCH RESULT</h1><br>
 
 <table th:border="4" th:width="1500" bgcolor="white">
   <tr>
     <th onclick="this.querySelector('a').style.color = 'red'"><h1><a href="/books/add" style="color: black">ADD</a></h1></th>
     <th onclick="this.querySelector('a').style.color = 'red'"><h1><a href="/" style="color: black">Main</a></h1></th>
   </tr>
-</table>
+</table><br>
 Search:
 <form action="/books/search" method="get">
   <input type="text" name="keyword">

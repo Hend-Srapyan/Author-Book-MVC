@@ -1,5 +1,6 @@
 package com.example.authorbook.service;
 
+import com.example.authorbook.entity.Author;
 import com.example.authorbook.entity.Book;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -16,4 +17,6 @@ public interface BookService {
     void deleteById(int id);
 
     void update(Book book, MultipartFile multipartFile);
+
+    List<Book> search(String keyword);
 }

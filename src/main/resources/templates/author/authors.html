@@ -1,45 +1,65 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>Authors</title>
-  <link rel="stylesheet" href="/css/style.css">
+    <meta charset="UTF-8">
+    <title>Authors</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body style="text-align: center">
 <h1 style="color: red">AUTHORS PAGE</h1><br>
 
 <table th:border="4" th:width="1500" bgcolor="white">
-  <tr>
-    <th onclick="this.querySelector('a').style.color = 'red'"><h1><a href="/authors/add" style="color: black">ADD</a></h1></th>
-    <th onclick="this.querySelector('a').style.color = 'red'"><h1><a href="/" style="color: black">Main</a></h1></th>
-  </tr>
+    <tr>
+        <th onclick="this.querySelector('a').style.color = 'red'"><h1><a href="/authors/add"
+                                                                         style="color: black">ADD</a></h1></th>
+        <th onclick="this.querySelector('a').style.color = 'red'"><h1><a href="/" style="color: black">Main</a></h1>
+        </th>
+    </tr>
 </table>
+<br>
+Search:
+<form action="/authors/search" method="get">
+    <input type="text" name="keyword">
+    <input type="submit" value="search">
+</form>
+Filter:
+<form action="/authors/filter" method="get">
+    Name:<input type="text" name="name" th:value="${name}"><br>
+    Surname:<input type="text" name="surname" th:value="${surname}"><br>
+    Phone:<input type="text" name="phone" th:value="${phone}"><br>
+    Gender:<select name="gender">
+    <option value=""></option>
+    <option value="MALE">MALE</option>
+    <option value="FEMALE">FEMALE</option>
+</select>
+    <input type="submit" value="filter">
+</form>
 
 <table th:border="4" th:width="1500" bgcolor="white">
-  <tr>
-    <th>ID</th>
-    <th>NAME</th>
-    <th>SURNAME</th>
-    <th>PHONE</th>
-    <th>DATE OF BIRTHDAY</th>
-    <th>GENDER</th>
-    <th>IMAGE</th>
-    <th>EDIT</th>
-    <th>DELETE</th>
+    <tr>
+        <th>ID</th>
+        <th>NAME</th>
+        <th>SURNAME</th>
+        <th>PHONE</th>
+        <th>DATE OF BIRTHDAY</th>
+        <th>GENDER</th>
+        <th>IMAGE</th>
+        <th>EDIT</th>
+        <th>DELETE</th>
 
-  </tr>
+    </tr>
 
-  <tr th:each="author : ${authors}">
-    <td th:text="${author.id}"></td>
-    <td th:text="${author.name}"></td>
-    <td th:text="${author.surname}"></td>
-    <td th:text="${author.phone}"></td>
-    <td th:text="${author.dateOfBirthday}"></td>
-    <td th:text="${author.gender.name()}"></td>
-    <td><img th:src="@{/getImage(imageName=${author.imageName})}" width="100"></td>
-    <td><a th:href="@{/authors/edit(id = ${author.id})}">Edit</a></td>
-    <td><a th:href="@{/authors/delete(id = ${author.id})}">Delete</a></td>
-  </tr>
+    <tr th:each="author : ${authors}">
+        <td th:text="${author.id}"></td>
+        <td th:text="${author.name}"></td>
+        <td th:text="${author.surname}"></td>
+        <td th:text="${author.phone}"></td>
+        <td th:text="${author.dateOfBirthday}"></td>
+        <td th:text="${author.gender.name()}"></td>
+        <td><img th:src="@{/getImage(imageName=${author.imageName})}" width="100"></td>
+        <td><a th:href="@{/authors/edit(id = ${author.id})}">Edit</a></td>
+        <td><a th:href="@{/authors/delete(id = ${author.id})}">Delete</a></td>
+    </tr>
 </table>
 </body>
 </html>

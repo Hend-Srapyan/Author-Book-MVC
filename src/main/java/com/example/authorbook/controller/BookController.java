@@ -10,7 +10,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -26,6 +25,13 @@ public class BookController {
         List<Book> all = bookService.findAll();
         modelMap.put("books", all);
         return "book/books";
+    }
+
+    @GetMapping("/search")
+    public String searchBook(@RequestParam("keyword") String keyword, ModelMap modelMap) {
+        List<Book> searchResult = bookService.search(keyword);
+        modelMap.addAttribute("books", searchResult);
+        return "book/booksSearch";
     }
 
     @GetMapping("/add")

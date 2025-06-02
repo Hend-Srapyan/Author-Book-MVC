@@ -1,5 +1,6 @@
 package com.example.authorbook.service.impl;
 
+import com.example.authorbook.entity.Author;
 import com.example.authorbook.entity.Book;
 import com.example.authorbook.repository.BookRepository;
 import com.example.authorbook.service.BookService;
@@ -63,5 +64,10 @@ public class BookServiceImpl implements BookService {
         }
         book.setCreatedAt(new Date());
         bookRepository.save(book);
+    }
+
+    @Override
+    public List<Book> search(String keyword) {
+        return bookRepository.findAllByTitleContaining(keyword);
     }
 }
