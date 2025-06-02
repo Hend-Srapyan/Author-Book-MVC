@@ -19,6 +19,19 @@ Search:
   <input type="text" name="keyword">
   <input type="submit" value="search">
 </form>
+Filter:
+<form action="/books/filter" method="get">
+  Title <input type="text" name="title" th:value="${title}"><br>
+  Price:<input type="number" name="price" th:value="${price}"><br>
+  Qty:<input type="number" name="qty" th:value="${qty}"><br>
+  Author: <select name="author">
+  <option th:each="author : ${authors}"
+          th:value="${author.id}"
+          th:text="${author.name + ' ' + author.surname}"></option>
+</select><br>
+  <input type="submit" value="filter">
+</form>
+
 
 <table th:border="4" th:width="1500" bgcolor="white">
   <tr>

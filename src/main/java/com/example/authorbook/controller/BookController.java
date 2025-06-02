@@ -4,6 +4,8 @@ import com.example.authorbook.entity.Author;
 import com.example.authorbook.entity.Book;
 import com.example.authorbook.service.AuthorService;
 import com.example.authorbook.service.BookService;
+import com.example.authorbook.specification.AuthorSearchCriteria;
+import com.example.authorbook.specification.BookSearchCriteria;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -31,6 +33,19 @@ public class BookController {
     public String searchBook(@RequestParam("keyword") String keyword, ModelMap modelMap) {
         List<Book> searchResult = bookService.search(keyword);
         modelMap.addAttribute("books", searchResult);
+        return "book/booksSearch";
+    }
+
+    @GetMapping("/filter")
+    public String filterBook(@ModelAttribute BookSearchCriteria criteria, ModelMap modelMap) {
+        modelMap.put("authors", authorService.findAll());
+        List<Book> searchResult = bookService.filter(criteria);
+        modelMap.addAttribute("books", searchResult);
+        modelMap.addAttribute("title", criteria.getTitle());
+        modelMap.addAttribute("price", criteria.getPrice());
+        modelMap.addAttribute("qty", criteria.getQty());
+        modelMap.addAttribute("author", criteria.getAuthor());
+
         return "book/booksSearch";
     }
 

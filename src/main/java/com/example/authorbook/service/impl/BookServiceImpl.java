@@ -4,6 +4,10 @@ import com.example.authorbook.entity.Author;
 import com.example.authorbook.entity.Book;
 import com.example.authorbook.repository.BookRepository;
 import com.example.authorbook.service.BookService;
+import com.example.authorbook.specification.AuthorSearchCriteria;
+import com.example.authorbook.specification.AuthorSpecification;
+import com.example.authorbook.specification.BookSearchCriteria;
+import com.example.authorbook.specification.BookSpecification;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Value;
@@ -69,5 +73,12 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<Book> search(String keyword) {
         return bookRepository.findAllByTitleContaining(keyword);
+    }
+
+    @Override
+    public List<Book> filter(BookSearchCriteria criteria) {
+        BookSpecification bookSpecification = new BookSpecification(criteria);
+        List<Book> all = bookRepository.findAll(bookSpecification);
+        return all;
     }
 }

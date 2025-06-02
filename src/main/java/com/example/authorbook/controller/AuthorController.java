@@ -32,6 +32,7 @@ public class AuthorController {
         modelMap.addAttribute("authors", searchResult);
         return "author/authorsSearch";
     }
+
     @GetMapping("/filter")
     public String filterAuthor(@ModelAttribute AuthorSearchCriteria searchCriteria, ModelMap modelMap) {
         List<Author> searchResult = authorService.filter(searchCriteria);
